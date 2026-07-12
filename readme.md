@@ -1,83 +1,277 @@
-# Python ML models with Django
+# TipPrediction_App
 
-This is repository demostates how to develop and deploy machine learning models using Django framework. It includes examples of various ML models, their training, evaluation, and deployment as web applications.  
+A full-stack Machine Learning web application that predicts restaurant tip amounts based on user inputs using an **XGBoost** model. The application consists of a **React** frontend, a **Django REST Framework** backend, and a trained machine learning model integrated for real-time predictions.
 
-## 1. Create Python env
+---
 
-we will use python env to create the env
+## Features
+
+- Predicts restaurant tip amounts using a trained XGBoost model.
+- Responsive React user interface.
+- REST API built with Django REST Framework.
+- Real-time prediction using a pre-trained machine learning model.
+- Input validation using Django serializers.
+- Automatic encoding of categorical features before prediction.
+- Clean separation between frontend, backend, and ML model.
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- Axios
+- HTML
+- CSS
+- JavaScript
+
+### Backend
+- Django
+- Django REST Framework
+- Python
+
+### Machine Learning
+- XGBoost
+- Scikit-learn
+- Pandas
+- NumPy
+- Joblib
+
+---
+
+## Machine Learning Workflow
+
+1. Collected and explored the dataset.
+2. Performed data preprocessing.
+3. Encoded categorical features.
+4. Split the dataset into training and testing sets.
+5. Trained an XGBoost regression model.
+6. Evaluated model performance.
+7. Saved the trained model using Joblib.
+8. Integrated the trained model into the Django backend.
+
+---
+
+## How Prediction Works
+
+1. The user enters:
+   - Total Bill
+   - Gender
+   - Smoker
+   - Day
+   - Time
+
+2. React sends the data to the Django REST API using Axios.
+
+3. Django validates the request using `TipPredictionSerializer`.
+
+4. Categorical values are encoded into numerical values.
+
+5. The trained XGBoost model loads from disk.
+
+6. The model predicts the restaurant tip.
+
+7. Django returns the prediction as a JSON response.
+
+8. React displays the predicted tip instantly.
+
+---
+
+## User Input Form
+
+The frontend form is implemented in **Form.jsx**.
+
+It collects the following inputs:
+
+- Total Bill
+- Sex
+- Smoker
+- Day
+- Time
+
+After the user submits the form:
+
+- Axios sends a POST request to the Django API.
+- The backend validates the input.
+- The trained model generates a prediction.
+- The predicted tip is returned to the frontend.
+- React displays the prediction on the page.
+
+---
+
+## API Endpoint
+
+The API is created using **Django REST Framework ViewSets** and a router.
+
+### Endpoint
+
+```
+POST /tp_data/
+```
+
+### Request Body
+
+```json
+{
+  "total_bill": 24.5,
+  "sex": "Male",
+  "smoker": "No",
+  "day": "Sun",
+  "time": "Dinner"
+}
+```
+
+### Example Response
+
+```json
+{
+  "id": 1,
+  "total_bill": 24.5,
+  "sex": "Male",
+  "smoker": "No",
+  "day": "Sun",
+  "time": "Dinner",
+  "predicted_tip": 3.82
+}
+```
+
+---
+
+## Project Structure
+
+```
+TipPrediction_App/
+│
+├── Backend/
+│   ├── ml_app/
+│   ├── models/
+│   │   └── xgboost_model.pkl
+│   ├── manage.py
+│   └── requirements.txt
+│
+├── Frontend/
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── ML_Model/
+│   ├── 01_ml.ipynb
+│   └── dataset.csv
+│
+└── README.md
+```
+
+---
+
+## Installation
+
+### Clone the Repository
 
 ```bash
- # createe a virtual evnvironment 
- python -m venv .venv
- 
- # activate the virtual environment for linux mac
- source .venv/bin/activate
- # for widows
- .venv\Scripts\activate
- ```
- ## 2. Install python libraries
-
- ```base
- # web development framwork
- pip install django
- # machine learing libraries
-pip install number pandas matplotlib seaborn plotly scikit-learn sgboost
-```
-## 3. Train your machine learning model
-
-1. Find the data
-2. Preprocess the data
-3. Train the model
-4. Evaluate the model
-5. Save the model
-6. Create a Django view for your model
-
-I have saved the model as `xgb_model.pkl` in the `models` directory.
-You can see the procedure of Ml training a model in this and saving in this directory[jupyter notebook](./ml_project/01_ml.ipynb)
-
- 
-## 4. Create a Django project
-
-```base
-django-admin startprpject tip_prediction
-cd tip_prediction
+git clone https://github.com/your-username/TipPrediction_App.git
+cd TipPrediction_App
 ```
 
-## 5 Create a Django app
+---
 
-```base
-python manage.py startapp ml_app
-```7. Create a form for user input
-The frontend form is created in Form.jsx. It collects user values for total_bill, sex, day, time, and smoker, then sends them to the Django API endpoint using Axios.
+## Backend Setup
 
-When the user submits the form, the data is posted to the backend route registered as tp_data/. This route is connected to TipPredictionViewSet, which validates the input with TipPredictionSerializer, encodes the categorical values, runs the machine learning model, and returns the predicted tip.
+Create a virtual environment:
 
-The response from the API contains the original saved data and the predicted result. The frontend then displays the predicted tip on the page.
+```bash
+python -m venv venv
+```
 
-8. API endpoint
-The tip prediction API is exposed through Django REST Framework using a router.
+Activate the environment:
 
-URL: tp_data/
-Method: POST
-Purpose: receive user input and return a predicted tip
-Example request data:
+### Windows
 
-Example response:
+```bash
+venv\Scripts\activate
+```
 
-9. Project structure
-01_ml.ipynb contains the notebook used to train the model
-models stores the trained model files
-ml_app contains the Django app
-src contains the React frontend
-10. Run the project
-Start the backend server:
+### Install dependencies
 
-Start the frontend:
+```bash
+pip install -r requirements.txt
+```
 
-Then open the frontend in the browser, fill in the form, and submit it to get a predicted tip.
+Run migrations:
 
-## 6. Update settings.py
+```bash
+python manage.py migrate
+```
 
-Add the new app to `INSTALLED_APP` list in `tip_prediction/settings.py`
+Start the Django server:
 
-## Create a form for user input
+```bash
+python manage.py runserver
+```
+
+Backend runs at:
+
+```
+http://127.0.0.1:8000/
+```
+
+---
+
+## Frontend Setup
+
+Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Frontend runs at:
+
+```
+http://localhost:5173/
+```
+
+---
+
+## Running the Project
+
+1. Start the Django backend.
+2. Start the React frontend.
+3. Open the frontend in your browser.
+4. Enter the required input values.
+5. Click the **Predict** button.
+6. View the predicted restaurant tip instantly.
+
+---
+
+## Future Improvements
+
+- User authentication
+- Prediction history
+- Charts and analytics dashboard
+- Docker deployment
+- Cloud deployment
+- Model retraining pipeline
+- Multiple regression model comparison
+
+---
+
+## Author
+
+**Bobbadi Ramesh**
+
+GitHub: https://github.com/manchalasudharshan
+
+LinkedIn: https://linkedin.com/in/manchalasudharshan-b8bb42249
