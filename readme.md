@@ -47,7 +47,34 @@ cd tip_prediction
 
 ```base
 python manage.py startapp ml_app
-```
+```7. Create a form for user input
+The frontend form is created in Form.jsx. It collects user values for total_bill, sex, day, time, and smoker, then sends them to the Django API endpoint using Axios.
+
+When the user submits the form, the data is posted to the backend route registered as tp_data/. This route is connected to TipPredictionViewSet, which validates the input with TipPredictionSerializer, encodes the categorical values, runs the machine learning model, and returns the predicted tip.
+
+The response from the API contains the original saved data and the predicted result. The frontend then displays the predicted tip on the page.
+
+8. API endpoint
+The tip prediction API is exposed through Django REST Framework using a router.
+
+URL: tp_data/
+Method: POST
+Purpose: receive user input and return a predicted tip
+Example request data:
+
+Example response:
+
+9. Project structure
+01_ml.ipynb contains the notebook used to train the model
+models stores the trained model files
+ml_app contains the Django app
+src contains the React frontend
+10. Run the project
+Start the backend server:
+
+Start the frontend:
+
+Then open the frontend in the browser, fill in the form, and submit it to get a predicted tip.
 
 ## 6. Update settings.py
 
