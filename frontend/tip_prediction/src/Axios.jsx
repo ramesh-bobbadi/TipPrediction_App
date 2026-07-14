@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BaseUrl = 'http://127.0.0.1:8000/'
+const BaseUrl = 'https://tipprediction-app-3.onrender.com/'
 
 const Axios = axios.create({
     baseURL: BaseUrl,
