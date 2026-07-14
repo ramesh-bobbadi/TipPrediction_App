@@ -11,6 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tip_prediction.settings')
+settings_module = 'api.deployment_settings'
+if 'RENDER_EXTERNAL_AL_HOSTNAME' in os.environ:
+    settings_module = 'api.deployment_settings'
+else:
+    settings_module = 'api.settings'
+    
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
 application = get_wsgi_application()
