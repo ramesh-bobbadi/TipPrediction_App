@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     settings_module = 'tip_prediction.deployment_settings'
-    if 'RENDER_EXTERNAL_AL_HOSTNAME' in os.environ:
+    if 'RENDER_EXTERNAL_HOSTNAME' in os.environ:
         settings_module = 'tip_prediction.deployment_settings'
     else:
         settings_module = 'tip_prediction.settings'
