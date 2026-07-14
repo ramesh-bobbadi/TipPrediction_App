@@ -14,8 +14,19 @@ function Form() {
             console.log(response.data.predicted_tip)
 
         } catch (error) {
-            console.log(error.response.data)
-        }
+    console.log("========== ERROR ==========");
+    console.log(error);
+
+    if (error.response) {
+        console.log("Status:", error.response.status);
+        console.log("Data:", error.response.data);
+    } else if (error.request) {
+        console.log("No response received");
+        console.log(error.request);
+    } else {
+        console.log(error.message);
+    }
+}
     }
 
     return (
