@@ -5,13 +5,14 @@ from .settings import BASE_DIR
 
 ALLOWED_HOSTS = [
     "tipprediction-app-3.onrender.com",
+    "tip-prediction-app-xnep.vercel.app",
     "localhost",
     "127.0.0.1",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://tipprediction-app-3.onrender.com",
-    "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
+    "https://tip-prediction-app-xnep.vercel.app",
 ]
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -29,6 +30,7 @@ MIDDLEWARE = [
  
 CORS_ALLOWED_ORIGINS = [
     "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
+    "https://tip-prediction-app-xnep.vercel.app"
 ]
 STORAGES ={
     "default": {
