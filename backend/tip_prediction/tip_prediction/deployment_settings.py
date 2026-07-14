@@ -3,7 +3,11 @@ import dj_database_url
 from .settings import *
 from .settings import BASE_DIR
 
-ALLOWED_HOSTS = [os.environ.get("RENDER_EXTERNAL_HOSTNAME")]
+ALLOWED_HOSTS = [
+    "tipprediction-app-3.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://" + os.environ.get("RENDER_EXTERNAL_HOSTNAME")
