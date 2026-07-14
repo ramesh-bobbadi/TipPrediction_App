@@ -10,7 +10,8 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://" + os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+    "https://tipprediction-app-3.onrender.com",
+    "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
 ]
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -26,7 +27,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
  
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = [
+    "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
+]
 STORAGES ={
     "default": {
         "BACKEND" :"django.core.files.storage.FileSystemStorage",
