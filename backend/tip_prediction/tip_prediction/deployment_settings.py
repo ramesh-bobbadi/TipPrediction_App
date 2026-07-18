@@ -13,6 +13,8 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://tipprediction-app-3.onrender.com",
     "https://tip-prediction-app-xnep.vercel.app",
+    'https://tip-prediction-app-6t89.vercel.app',
+    
 ]
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -31,7 +33,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
     "https://tip-prediction-app-xnep.vercel.app",
-    'https://tip-prediction-app-6t89.vercel.app/',
+    'https://tip-prediction-app-6t89.vercel.app',
 ]
 STORAGES ={
     "default": {
