@@ -30,7 +30,8 @@ MIDDLEWARE = [
  
 CORS_ALLOWED_ORIGINS = [
     "https://tip-prediction-app-deud-i2rclybce-application-developers.vercel.app",
-    "https://tip-prediction-app-xnep.vercel.app"
+    "https://tip-prediction-app-xnep.vercel.app",
+    'https://tip-prediction-app-6t89.vercel.app/',
 ]
 STORAGES ={
     "default": {
